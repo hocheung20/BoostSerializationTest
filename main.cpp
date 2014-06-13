@@ -5,7 +5,7 @@
 #include "boost/archive/binary_oarchive.hpp"
 #include "boost/archive/binary_iarchive.hpp"
 
-//#define USE_BINARY
+#define USE_BINARY
 
 #ifdef USE_BINARY
     typedef boost::archive::binary_oarchive out_archive;
@@ -53,17 +53,18 @@ int main()
     inputStruct.structChar = 'a';
     inputStruct.structString = "testLol";
 
-    std::string fileName = "test_serialize.txt";
-    std::ofstream ofs(fileName);
+    std::stringstream os(std::ios_base::binary | std::ios_base::out | std::ios_base::in);
+
     {
-        out_archive oa(ofs);
+        out_archive oa(os);
         oa << inputStruct;
     }
 
     TestStruct outputStruct;
     {
-        std::ifstream ifs(fileName);
-        in_archive ia(ifs);
+        std::istringstream is;
+        is.str(os.str());
+        in_archive ia(is);
 
         ia >> outputStruct;
     }
