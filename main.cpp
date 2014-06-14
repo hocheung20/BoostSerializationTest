@@ -90,7 +90,7 @@ int main()
 #else
         std::stringstream is;
 #endif  // USE_BINARY_STREAMS
-        is.str(os.str());
+        is << os.rdbuf();
 #endif  // USE_FSTREAM
         in_archive ia(is);
 
