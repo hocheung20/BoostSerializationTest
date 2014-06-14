@@ -86,7 +86,7 @@ int main()
 #endif // USE_BINARY_STREAMS
 #else
 #ifdef USE_BINARY_STREAMS
-        std::stringstream is(std::ios_base::in | std::ios_base_out | std::ios_base::binary );
+        std::stringstream is(std::ios_base::in | std::ios_base::out | std::ios_base::binary );
 #else
         std::stringstream is;
 #endif  // USE_BINARY_STREAMS
